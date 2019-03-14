@@ -274,9 +274,9 @@
     line-height: 1.2;
     text-align: center;
     color: $gray-200;
+    margin-bottom: 9px;
 
     &.open {
-      margin-bottom: 9px;
     }
 
     span {

@@ -52,11 +52,6 @@
                 :popoverPosition="'top'",
                 @click="selectItem(item)"
               )
-                template(slot="popoverContent", slot-scope="ctx")
-                  div.questPopover
-                    h4.popover-content-title {{ item.text }}
-                    questInfo(:quest="item")
-
                 template(slot="itemBadge", slot-scope="ctx")
                   span.badge.badge-pill.badge-item.badge-svg(
                     :class="{'item-selected-badge': ctx.item.pinned, 'hide': !ctx.item.pinned}",

@@ -250,7 +250,7 @@
       border-radius: 2px;
       background-color: #edecee;
       display: inline-block;
-      padding: 8px;
+      padding: 0;
       margin-right: 12px;
     }
 
@@ -258,9 +258,8 @@
       margin-bottom: 0;
     }
 
-    .items > div:not(:last-of-type) {
-      margin-right: 16px;
-      margin-bottom: 16px;
+    .items > div {
+      margin: 8px;
     }
   }
 

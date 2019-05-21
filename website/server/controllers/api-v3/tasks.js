@@ -637,6 +637,15 @@ api.scoreTask = {
 
     if (task.group && task.group.taskId) {
       await handleSharedCompletion(task);
+      try {
+        const groupTask = await Tasks.Task.findOne({
+          _id: task.group.taskId,
+        }).exec();
+
+        if (groupTask) await groupTask.scoreChallengeTask(delta, direction);
+      } catch (e) {
+        logger.error(e);
+      }
     }
 
     // Save results and handle request

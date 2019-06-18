@@ -643,7 +643,10 @@ api.scoreTask = {
           _id: task.group.taskId,
         }).exec();
 
-        if (groupTask) await groupTask.scoreChallengeTask(delta, direction);
+        if (groupTask) {
+          const groupDelta = groupTask.group.assignedUsers ? delta / groupTask.group.assignedUsers.length : delta;
+          await groupTask.scoreChallengeTask(groupDelta, direction);
+        }
       } catch (e) {
         logger.error(e);
       }

@@ -113,7 +113,8 @@ async function cronAsync (req, res) {
         }).exec();
 
         if (groupTask) {
-          const delta = Math.pow(0.9747, task.value) * -1;
+          let delta = Math.pow(0.9747, task.value) * -1;
+          if (groupTask.group.assignedUsers) delta /= groupTask.group.assignedUsers.length;
           await groupTask.scoreChallengeTask(delta, 'down');
         }
       }

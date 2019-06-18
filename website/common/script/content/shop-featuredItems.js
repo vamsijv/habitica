@@ -9,11 +9,11 @@ const featuredItems = {
     },
     {
       type: 'eggs',
-      path: 'eggs.Dragon',
+      path: 'eggs.Fox',
     },
     {
       type: 'hatchingPotions',
-      path: 'hatchingPotions.Red',
+      path: 'hatchingPotions.CottonCandyBlue',
     },
     {
       type: 'card',
@@ -23,15 +23,15 @@ const featuredItems = {
   quests: [
     {
       type: 'quests',
-      path: 'quests.treeling',
+      path: 'quests.bronze',
     },
     {
       type: 'quests',
-      path: 'quests.egg',
+      path: 'quests.yarn',
     },
     {
       type: 'quests',
-      path: 'quests.rock',
+      path: 'quests.dolphin',
     },
   ],
   seasonal: 'spring2018Healer',

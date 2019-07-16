@@ -399,6 +399,21 @@ export function cron (options = {}) {
     if (task.up === false || task.down === false) {
       task.value = Math.abs(task.value) < 0.1 ? 0 : task.value = task.value / 2;
     }
+    if (task.group && task.group.approval && task.group.approval.approved) {
+      task.group.approval.approved = false;
+      task.group.approval.dateApproved = null;
+      task.group.approval.requested = false;
+      task.group.approval.requestedDate = null;
+    }
+  });
+
+  tasksByType.dailys.forEach((task) => {
+    if (task.group && task.group.approval && task.group.approval.approved) {
+      task.group.approval.approved = false;
+      task.group.approval.dateApproved = null;
+      task.group.approval.requested = false;
+      task.group.approval.requestedDate = null;
+    }
   });
 
   // Finished tallying

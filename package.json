@@ -87,7 +87,7 @@
     "sass-loader": "^7.0.3",
     "shelljs": "^0.8.2",
     "short-uuid": "^3.0.0",
-    "smartbanner.js": "^1.11.0",
+    "smartbanner.js": "^1.14.4",
     "stripe": "^7.9.0",
     "superagent": "^5.0.2",
     "svg-inline-loader": "^0.8.0",

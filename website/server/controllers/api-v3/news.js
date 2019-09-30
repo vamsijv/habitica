@@ -3,7 +3,7 @@ import { authWithHeaders } from '../../middlewares/auth';
 let api = {};
 
 // @TODO export this const, cannot export it from here because only routes are exported from controllers
-const LAST_ANNOUNCEMENT_TITLE = 'FALL FESTIVAL BEGINS! SEPTEMBER SUBSCRIBER ITEMS!';
+const LAST_ANNOUNCEMENT_TITLE = 'LAST CHANCE FOR SEPTEMBER ITEMS';
 const worldDmg = { // @TODO
   bailey: false,
 };
@@ -30,26 +30,20 @@ api.getNews = {
           <div class="mr-3 ${baileyClass}"></div>
           <div class="media-body">
             <h1 class="align-self-center">${res.t('newStuff')}</h1>
-            <h2>9/24/2019 - ${LAST_ANNOUNCEMENT_TITLE}</h2>
+            <h2>9/30/2019 - ${LAST_ANNOUNCEMENT_TITLE}</h2>
           </div>
         </div>
         <hr/>
         <div class="promo_mystery_201909 center-block"></div>
-        <h3>September Subscriber Items Revealed!</h3>
-        <p>The September Subscriber Item Set has been revealed: the Affable Acorn Item Set! You only have until September 30 to <a href='/user/settings/subscription'>receive the item set when you subscribe</a>. If you're already an active subscriber, reload the site and then head to Inventory > Items to claim your gear!</p>
-        <p>Subscribers also receive the ability to buy Gems for Gold -- the longer you subscribe, the more Gems you can buy per month! There are other perks as well, such as longer access to uncompressed data and a cute Jackalope pet. Best of all, subscriptions let us keep Habitica running. Thank you very much for your support -- it means a lot to us.</p>
+        <h3>Last Chance for Affable Acorn Set</h3>
+        <p>Reminder: this is the final day to <a href='/user/settings/subscription'>subscribe and receive the Affable Acorn Set</a>! Subscribing also lets you buy Gems for Gold. The longer your subscription, the more Gems you get!</p>
+        <p>Thanks so much for your support! You help keep Habitica running.</p>
         <div class="small mb-3">by Beffymaroo</div>
-        <div class="promo_fall_festival_2019 center-block"></div>
-        <h3>Limited Edition Class Outfits</h3>
-        <p>From now until October 31st, limited edition outfits are available in the Rewards column! Depending on your class, you can be a Raven Warrior, a Lich Healer, a Phantom Rogue, or a Cyclops Mage. You'd better get productive to earn enough gold before your time runs out...</p>
-        <div class="small mb-3">by gawrone, jjgame83, AnnDeLune, Beffymaroo, and SabreCat</div>
-        <div class="promo_fall_festival_2018 center-block"></div>
-        <h3>Seasonal Shop Opens</h3>
-        <p>The <a href='/shops/seasonal'>Seasonal Shop</a> has opened! It's stocking autumnal Seasonal Edition goodies at the moment, including past fall outfits. Everything there will be available to purchase during the Fall Festival event each year, but it's only open until October 31st, so be sure to stock up now, or you'll have to wait a year to buy these items again!</p>
-        <div class="small mb-3">by AnnDeLune, ʂʈєƒąʃųƥągųʂ, Katy133, Lilith of Alfheim, Definitely not a villain, ShoGirlGeek. cataclysms, maxpendragon, Vikte, QuartzFox, Lemoness, Beffymaroo and SabreCat</div>
-        <div class="promo_seasonal_shop_fall center-block"></div>
-        <h3>NPC Outfits</h3>
-        <p>Everyone has hastened down to the Flourishing Fields to celebrate this spooky autumn festival. Be sure to check out all the outfits that people are sporting!</p>
+        <div class="promo_rocking_reptiles_bundle center-block"></div>
+        <h3>Last Chance for Rocking Reptiles Quest Bundle</h3>
+        <p>This is also the final day to buy the discounted Rocking Reptiles Pet Quest Bundle, featuring the Alligator, Snake, and Velociraptor quests all for seven gems! Be sure to get your claws on it before it slithers away from the <a href='/shops/quests'>Quest Shop</a>!</p>
+        <div class="small">Art by Gully, Willow The Witty, mfonda, UncommonCriminal, tabbytoes, EmeraldOx, LordDarkly, PainterProphet, Seraphina, Anna Glassman, Procyon, and Lilith of Alfheim</div>
+        <div class="small mb-3">Writing by Mike.Antonacci, lilackbar, Daniel The Bard, and felipena</div>
       </div>
       `,
     });

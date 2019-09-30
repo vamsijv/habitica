@@ -8,7 +8,7 @@ import * as Tasks from '../../../../website/server/models/task';
 import common from '../../../../website/common';
 import analytics from '../../../../website/server/libs/analyticsService';
 
-// const scoreTask = common.ops.scoreTask;
+const scoreTask = common.ops.scoreTask;
 
 let pathToCronLib = '../../../../website/server/libs/cron';
 
@@ -933,6 +933,80 @@ describe('cron', () => {
       cron({user, tasksByType, daysMissed, analytics});
 
       expect(user.stats.hp).to.equal(48);
+    });
+
+    context('repeat every X days after completion is on', () => {
+      let dateDuringTest; // date will be changed as the tests mimic a user going through one or more crons
+      beforeEach(() => {
+        tasksByType.dailys[0].everyX = 3;
+        tasksByType.dailys[0].frequency = 'daily';
+        tasksByType.dailys[0].repeatAfterCompletion = true;
+        scoreTask({ user, task: tasksByType.dailys[0], direction: 'up', cron: false });
+        dateDuringTest = moment();
+      });
+
+      context('player uses Habitica every day (daysMissed is always 1)', () => {
+        it('should be due 3+ days after completion but not before', () => {
+          daysMissed = 1;
+
+          // 1 day after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          // we subtract 5 minutes to ensure we haven't jumped more than a day from the starting time due to any small delays in the tests
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.false;
+
+          // 2 days after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.false;
+
+          // 3 days after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.true;
+
+          // 4 days after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.true;
+        });
+      });
+
+      context('player does not use Habitica every day (daysMissed is sometimes greater than 1)', () => {
+        it('should not be due 2 days after completion when the intervening day is missed', () => {
+          daysMissed = 2;
+
+          // 2 days after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.false;
+        });
+
+        it('should be due 3 days after completion when one intervening day is missed', () => {
+          daysMissed = 1;
+
+          // 1 day after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.false;
+
+          daysMissed = 2;
+
+          // 3 days after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.true;
+        });
+
+        it('should be due 3 days after completion when all intervening days are missed', () => {
+          daysMissed = 3;
+
+          // 3 days after completion
+          dateDuringTest.add(daysMissed, 'days').subtract(5, 'minutes').toDate();
+          cron({user, tasksByType, daysMissed, analytics, now: dateDuringTest});
+          expect(tasksByType.dailys[0].isDue).to.be.true;
+        });
+      });
     });
   });
 
